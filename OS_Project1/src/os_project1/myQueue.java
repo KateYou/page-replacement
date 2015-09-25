@@ -133,17 +133,7 @@ public class myQueue {
 
                 }
 
-//            elseif {
-//                
-//            }
 
-//            if(array[i].getPageNum() == next.getPageNum()) 
-//            {
-//                found = true;
-//                temp = array[i];                
-//                numElems--;
-//                
-//            }
         }
         }
         

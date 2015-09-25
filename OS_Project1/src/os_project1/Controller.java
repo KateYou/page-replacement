@@ -207,11 +207,13 @@ public class Controller {
         
         for (Page page : pages)       
         {                        
-            if (cp == page) {                         // This only happens on the first page
+            if (cp == page) {                         // This only happens once on the first loop to put first page = cp
               continue;                               // just loop again
               
               }
            
+
+            
             else   {  
     
                 if (!newQueue.isFull())               //not full
@@ -225,15 +227,16 @@ public class Controller {
                     else                                //not full, page is already loaded
                     {
                         newHits++;
+                        cp = page;
                     }
                 } 
                 else                                    //frame is full
                 {   
                     if (!newQueue.linearSearch(cp))      //the cp page isn't loaded
                     {
-                       if (newQueue.linearSearch(page)) {
-                          newQueue.remove(page);
-                            newQueue.insert(page);
+                       if (newQueue.linearSearch(page)) {  // If the next page is already in the queue, remove and replace to reset it at the rear of queue
+                            newQueue.remove(page);          // so that it is not removed but another page from queue is instead removed
+                            newQueue.insert(page);          
                         }
                        newFaults++;                   
                        newQueue.remove();
@@ -243,11 +246,24 @@ public class Controller {
                     else                               //full, but the page is already loaded
                     {
                         newHits++;
+                        cp = page;
                     } 
                 } 
                 
             }
         }
+        
+                if (!newQueue.linearSearch(cp))      //this one only happens once for the last loop to capture page which was set = to cp
+                    {
+                       newFaults++;                   
+                       newQueue.remove();
+                       newQueue.insert(cp);
+                    } 
+                else                               //full, but the page is already loaded
+                    {
+                        newHits++;
+                    } 
+        
     } 
     
    

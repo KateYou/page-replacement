@@ -116,7 +116,7 @@ public class PriorityQueue implements Queueable {
      * @return Page object that was removed.
      */
     @Override
-    public Page remove(int max)                 // parameter will always be 1 in 2 frame queue  NO
+    public Page remove(int max)                 
     {
         Page removed = array[max];
         if(!isEmpty())
